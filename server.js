@@ -38,6 +38,7 @@ app.use(cookieParser())
 //     createUserTable();
 //     createUserTable();
 // })
+/* Create User table */
 createUserTable();
 
 
