@@ -36,6 +36,7 @@ app.use(cookieParser())
 //     }
 //     console.log("Database Connected to B2B.")
 //     createUserTable();
+//     createUserTable();
 // })
 createUserTable();
 
