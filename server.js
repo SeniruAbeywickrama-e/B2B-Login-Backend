@@ -93,12 +93,12 @@ app.post('/login', async (req, res) => {
             logEvent("Fail to LogIn");
             return  res.json("Fail")
         }else {
-            const password_valid = await bcrypt.compare(req.body.values.password[0],user.password);
+            // const password_valid = await bcrypt.compare(req.body.values.password[0],user.password);
             const user_email = req.body.values.email[0];
             const company_token = jwt.sign({user_email},process.env.SECRET_KEY,{expiresIn: "1d"});
             res.cookie("company-token", company_token);
             logEvent("Successfully LogIn to the Company registration");
-            return  res.json("Success")
+            return  res.json(200)
         }
     }catch (error) {
         console.error('Error creating table:', error);
