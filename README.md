@@ -1,2 +1,2 @@
-# B2B-Login-Company-Backend
+# B2B-Login-Backend
 Backend for company of B2B project
