@@ -27,6 +27,7 @@ const login = async (req, res) => {
             } else {
                 // const password_valid = await bcrypt.compare(req.body.values.password[0],user.password);
                 const my_token = jwt.sign({user_email}, "our-secret-key-company",{expiresIn: "2h"});
+                console.log("Token Created - " + my_token)
                 res.cookie("tokenComp",my_token);
                 logEvent("Successfully LogIn to the Company registration");
                 return res.status(200).json({message: "Success", status: 200})

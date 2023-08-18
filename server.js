@@ -1,11 +1,8 @@
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
-const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
-const bcrypt = require("bcrypt");
 const sequelize = require('./db');
-const User = require('./model/user');
 
 const {logEvent} = require('./logger');
 const {validationResult ,check} = require("express-validator");
@@ -14,7 +11,7 @@ const env = require("dotenv").config();
 const app = express();
 app.use(cors(
     {
-        orgin: ["http://localhost:3000"],
+        origin: ["http://localhost:3000"],
         methods: ["POST","GET"],
         credentials: true
     }
