@@ -81,8 +81,14 @@ const login = async (req, res) => {
                 const my_token = jwt.sign({user_email}, "our-secret-key-company",{expiresIn: "2h"});
                 console.log("Token Created - " + my_token)
                 res.cookie("tokenComp",my_token);
-                logEvent("Successfully LogIn to the Company registration");
-                return res.status(200).json({message: "Success", status: 200})
+                if(user.userType === 1) {
+                    logEvent("Successfully logIn as a Company");
+                    return res.status(200).json({message: "Company Login Success", status: 200})
+                }
+                else {
+                    logEvent("Successfully logIn as a Investor");
+                    return res.status(200).json({message: "Investor Login Success", status: 201})
+                }
             }
         }else {
             return res.status(500).json({message: 'User Name or Password is Empty', status: 500})
