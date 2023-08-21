@@ -27,7 +27,7 @@ async function createUserTable() {
     try {
         console.log("Database Connected to B2B.")
         await sequelize.sync({ force: false }); // The { force: true } option will drop the table if it already exists and then recreate it.
-        console.log('B2B Company Table created successfully');
+        console.log('B2B data tables created successfully');
     } catch (error) {
         console.error('Error creating table:', error);
     }
