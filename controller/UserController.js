@@ -54,18 +54,21 @@ const verify = (req, res) => {
             jwt.verify(token, "our-secret-key-company", function (error, decoded) {
                 if (error) {
                     reject(false);
+                    return res.status(500).json({message: "Unauthorized error !", status: 500})
                 }
                 if (decoded) {
                     resolve(true);
+                    return res.status(200).json({message: "success", status: 200})
+
                 }
             })
         });
         console.log(isValid)
-        if(isValid){
-            return res.status(200).json({message: "success", status: 200})
-        }else {
-            return res.status(500).json({message: "Unauthorized error !", status: 500})
-        }
+        // if(isValid){
+        //     return res.status(200).json({message: "success", status: 200})
+        // }else {
+        //     return res.status(500).json({message: "Unauthorized error !", status: 500})
+        // }
     }catch (err){
         return err.status(500).json({message: "Unauthorized error !", status: 500})
     }
