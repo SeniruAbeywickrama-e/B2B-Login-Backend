@@ -25,17 +25,6 @@ createUserTable();
 
 async function createUserTable() {
     try {
-        // const createUserTableQuery = `
-        //       CREATE TABLE IF NOT EXISTS company (
-        //         id INT AUTO_INCREMENT PRIMARY KEY,
-        //         email VARCHAR(20),
-        //         password VARCHAR(30),
-        //         name VARCHAR(30),
-        //         contact INT
-        //       )
-        // `;
-        // await db.query(createUserTableQuery);
-
         console.log("Database Connected to B2B.")
         await sequelize.sync({ force: false }); // The { force: true } option will drop the table if it already exists and then recreate it.
         console.log('B2B Company Table created successfully');
