@@ -56,11 +56,11 @@ const Company = sequelize.define('company', {
         allowNull: false
     },
     collaterals: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.JSON,
         allowNull: false
     },
     referrals: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.JSON,
         allowNull: false
     },
     product_Industry1: {
@@ -148,15 +148,15 @@ const Company = sequelize.define('company', {
         allowNull: false
     },
     stakeholders: {
-        type: Sequelize.STRING(30),
+        type: Sequelize.JSON,
         allowNull: false
     },
     company_Collaterals: {
-        type: Sequelize.STRING(30),
+        type: Sequelize.JSON,
         allowNull: false
     },
     company_Referrals: {
-        type: Sequelize.STRING(30),
+        type: Sequelize.JSON,
         allowNull: false
     },
 })

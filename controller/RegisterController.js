@@ -24,9 +24,9 @@ const registerInvestor = async (req, res) => {
         } = req.body;
 
         // Validate fields
-        if (firstName.length <= 3 || lastName.length <= 3 || address.length <= 3) {
-            return res.status(400).json({ message: 'Fields must contain more than 3 characters' });
-        }
+        // if (firstName.length <= 3 || lastName.length <= 3 || address.length <= 3) {
+        //     return res.status(400).json({ message: 'Fields must contain more than 3 characters' });
+        // }
 
         try {
             const newInvestment = {
@@ -54,7 +54,7 @@ const registerInvestor = async (req, res) => {
         }
 
         // Log the successful registration
-        logger.info(`Investor successfully registerd: ${firstName}`);
+        logEvent(`Investor successfully registerd`);
 
         // Respond with success message
         res.status(201).json({ message: 'Investor registered successfully' });
@@ -69,10 +69,11 @@ const registerCompany = async (req, res) => {
     const formData = req.body;
 
     // Check validation results
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-    }
+    // const errors = validationResult(req);
+    // if (!errors.isEmpty()) {
+    //     return res.status(400).json({ errors: errors.array() });
+    // }
+    console.log(formData);
 
     try {
         const newCompany = {
@@ -118,13 +119,12 @@ const registerCompany = async (req, res) => {
 
         await CompanyModel.create(newCompany);
 
-
         // Log the successful registration
         logEvent(`Company successfully registerd`);
 
         res.status(201).json({ message: 'Registration data saved' });
     } catch (error) {
-        logger.error(`Registration error: ${error}`);
+        logEvent(`Registration error`);
         console.error('Registration error:', error);
         res.status(500).json({ error: 'An error occurred during registration' });
     }

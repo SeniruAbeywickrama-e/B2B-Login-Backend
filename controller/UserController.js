@@ -73,12 +73,9 @@ const login = async (req, res) => {
 
             const user = await UserModel.findOne(options);
 
-            if (!user) {
-                logEvent("No user exists");
-                return res.status(200).json({message: 'No user exists', status: 404})
-            } else {
+            if (user) {
                 // const password_valid = await bcrypt.compare(req.body.values.password[0],user.password);
-                const my_token = jwt.sign({user_email}, "our-secret-key-company",{expiresIn: "2h"});
+                const my_token = jwt.sign({user_email}, "our-secret-key-company",{expiresIn: "1d"});
                 console.log("Token Created - " + my_token)
                 res.cookie("tokenComp",my_token);
                 if(user.userType === 1) {
@@ -89,6 +86,9 @@ const login = async (req, res) => {
                     logEvent("Successfully logIn as a Investor");
                     return res.status(200).json({message: "Investor Login Success", status: 201})
                 }
+            } else {
+                logEvent("No user exists");
+                return res.status(200).json({message: 'No user exists', status: 404})
             }
         }else {
             return res.status(500).json({message: 'User Name or Password is Empty', status: 500})
@@ -121,7 +121,7 @@ const verify = (req, res) => {
                 }
             })
         });
-        console.log(isValid)
+
         // if(isValid){
         //     return res.status(200).json({message: "success", status: 200})
         // }else {
