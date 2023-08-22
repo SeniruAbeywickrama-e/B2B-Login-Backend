@@ -68,11 +68,21 @@ const registerInvestor = async (req, res) => {
 const registerCompany = async (req, res) => {
     const formData = req.body;
 
+    // Define validation rules
+    const validationRules = [
+        { field: 'elevatorPitch', message: 'Elevator Pitch must contain at least 3 characters' },
+        { field: 'productDescription', message: 'Product Description must contain at least 3 characters' },
+        { field: 'businessProblemSolved', message: 'Business Problem Solved must contain at least 3 characters' },
+        { field: 'natureOfBusiness', message: 'Nature of Business must contain at least 3 characters' },
+        { field: 'keyValueProposition', message: 'Key Value Proposition must contain at least 3 characters' },
+    ];
+
     // Check validation results
     // const errors = validationResult(req);
     // if (!errors.isEmpty()) {
     //     return res.status(400).json({ errors: errors.array() });
     // }
+
     console.log(formData);
 
     try {
@@ -122,11 +132,11 @@ const registerCompany = async (req, res) => {
         // Log the successful registration
         logEvent(`Company successfully registerd`);
 
-        res.status(201).json({ message: 'Registration data saved' });
+        return res.status(201).json({ message: 'Registration data saved', status : 201 });
     } catch (error) {
         logEvent(`Registration error`);
         console.error('Registration error:', error);
-        res.status(500).json({ error: 'An error occurred during registration' });
+        return res.status(500).json({ error: 'An error occurred during registration' });
     }
 }
 
