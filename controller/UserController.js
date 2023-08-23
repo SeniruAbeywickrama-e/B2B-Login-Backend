@@ -32,7 +32,7 @@ const signup = async (req, res) => {
                 email: email,
                 password: password,
                 name: companyName,
-                contact: companyName,
+                contact: contactNumber,
                 displayName: displayName,
             };
             // Add data to company table
