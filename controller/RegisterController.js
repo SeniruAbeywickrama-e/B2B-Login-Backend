@@ -1,7 +1,23 @@
 const InvestorModel = require('../model/investor');
 const CompanyModel = require('../model/company');
 const {logEvent} = require('../logger');
+const express = require('express');
+const AWS = require('aws-sdk');
+const fs = require('fs');
+const env = require("dotenv").config();
 
+// Configure AWS credentials
+// AWS.config.update({
+//     accessKeyId: process.env.ACCESS_KEY_ID,
+//     secretAccessKey: process.env.SECRET_ACCESS_KEY,
+//     region: process.env.REGION
+// });
+// const path = express.Router()
+// const s3 = new AWS.S3();
+// const bucketName = 'my-test-b2b';
+// const fileName = 'example.jpg'; // Change this to your image file name
+// const multer = require('multer');
+// const multerS3 = require('multer-s3');
 
 const registerInvestor = async (req, res) => {
     try {
@@ -66,6 +82,45 @@ const registerInvestor = async (req, res) => {
 }
 
 const registerCompany = async (req, res) => {
+    // const fileContent = fs.readFileSync('D:/My Docs/My docs/Engenuity AI/Engen Projects/B2B/App/B2B Backend/ss01.png');
+    //
+    // // Set up parameters for S3 upload
+    // const params = {
+    //     Bucket: bucketName,
+    //     Key: fileName,
+    //     Body: fileContent,
+    //     ACL: 'public-read' // Make the uploaded object publicly accessible
+    // };
+
+    // const upload = multer({
+    //     storage: multerS3({
+    //         s3: s3,
+    //         bucket: 'my-test-b2b',
+    //         contentType: multerS3.AUTO_CONTENT_TYPE, // Automatically set content type
+    //         acl: 'public-read', // Optional: Set access control
+    //         key: function (req, file, cb) {
+    //             cb(null, Date.now().toString() + '-' + file.originalname); // Unique key for the object in S3
+    //         }
+    //     })
+    // });
+
+    path.post('/upload', upload.array('file',10), function(req, res) {
+        // Handle response after upload
+        res.json({ message: 'File uploaded successfully' });
+    });
+
+    // // Upload the image
+    // s3.upload(params, (err, data) => {
+    //     if (err) {
+    //         console.error("Error uploading:", err);
+    //     } else {
+    //         const imageUrl = data.Location; // Extract the uploaded image URL
+    //         console.log("Image uploaded successfully. URL:", imageUrl);
+    //
+    //         // Now you can use imageUrl to display or share the uploaded image.
+    //     }
+    // });
+
     const formData = req.body;
 
     // Define validation rules
@@ -83,7 +138,7 @@ const registerCompany = async (req, res) => {
     //     return res.status(400).json({ errors: errors.array() });
     // }
 
-    console.log(formData);
+    console.log(formData.collaterals);
 
     try {
         const newCompany = {

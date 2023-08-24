@@ -35,6 +35,7 @@ async function createUserTable() {
 
 //login route
 const userRoute = require('./routes/auth');
+// const {path} = require('./controller/RegisterController');
 
 //
 // /* User Login */
@@ -89,6 +90,7 @@ const userRoute = require('./routes/auth');
 // })
 
 app.use('/api/users', userRoute);
+// app.use('/api/register', path);
 
 app.listen(8080, () => {
     logEvent("Listening the port 8080...");

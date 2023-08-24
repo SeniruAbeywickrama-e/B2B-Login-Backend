@@ -58,10 +58,10 @@ const signup = async (req, res) => {
 /* Function for login */
 const login = async (req, res) => {
     try {
-        const user_email = req.body.values.email;
-        const user_password = req.body.values.password;
 
-        console.log(user_email)
+        const {user_email, user_password } = req.body.values;
+        console.log(req.body.values)
+
 
         if(user_password && user_email){
             const options = {
