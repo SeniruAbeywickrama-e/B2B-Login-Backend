@@ -59,15 +59,13 @@ const signup = async (req, res) => {
 const login = async (req, res) => {
     try {
 
-        const {user_email, user_password} = req.body.values;
+        const {email, password} = req.body;
 
-        console.log(user_email)
-
-        if(user_password && user_email){
+        if(password && email){
             const options = {
                 where: {
-                    email: user_email,
-                    password: user_password
+                    email: email,
+                    password: password
                 }
             };
 
@@ -75,7 +73,7 @@ const login = async (req, res) => {
 
             if (user) {
                 // const password_valid = await bcrypt.compare(req.body.values.password[0],user.password);
-                const my_token = jwt.sign({user_email}, "our-secret-key-company",{expiresIn: "1d"});
+                const my_token = jwt.sign({email}, "our-secret-key-company",{expiresIn: "1d"});
                 console.log("Token Created - " + my_token)
                 res.cookie("tokenComp",my_token);
                 if(user.userType === 1) {
@@ -88,7 +86,7 @@ const login = async (req, res) => {
                 }
             } else {
                 logEvent("No user exists");
-                return res.status(200).json({message: 'No user exists', status: 404})
+                return res.status(404).json({message: 'No user exists', status: 404})
             }
         }else {
             return res.status(500).json({message: 'User Name or Password is Empty', status: 500})
