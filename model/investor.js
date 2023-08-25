@@ -52,20 +52,20 @@ const Investor = sequelize.define('investors', {
         allowNull: false
     },
     investment_industry_preferences1: {
-        type: Sequelize.STRING(30),
+        type: Sequelize.STRING,
         allowNull: false
     },
     investment_industry_preferences2: {
-        type: Sequelize.STRING(30),
-        allowNull: false
+        type: Sequelize.STRING,
+        allowNull: true
     },
     investment_industry_preferences3: {
-        type: Sequelize.STRING(30),
-        allowNull: false
+        type: Sequelize.STRING,
+        allowNull: true
     },
     investment_industry_preferences4: {
-        type: Sequelize.STRING(30),
-        allowNull: false
+        type: Sequelize.STRING,
+        allowNull: true
     },
 })
 
