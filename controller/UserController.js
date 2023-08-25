@@ -53,6 +53,11 @@ const signup = async (req, res) => {
     }
 }
 
+const signOut = async (req, res) => {
+    res.clearCookie('tokenComp');
+    logEvent(`User successfully signed out`);
+    return res.status(200).json({message: "Company Login Success", status: 200})
+}
 
 
 /* Function for login */
@@ -156,5 +161,5 @@ function isValidDisplayName(displayName) {
 }
 
 module.exports = {
-    login,verify,signup
+    login,verify,signup,signOut
 }
