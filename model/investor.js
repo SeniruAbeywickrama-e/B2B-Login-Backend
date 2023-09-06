@@ -67,6 +67,10 @@ const Investor = sequelize.define('investors', {
         type: Sequelize.STRING,
         allowNull: true
     },
+    status: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
 })
 
 

@@ -45,6 +45,7 @@ const registerInvestor = async (req, res) => {
                 investment_industry_preferences2: investmentIndustryPreference2,
                 investment_industry_preferences3: investmentIndustryPreference3,
                 investment_industry_preferences4: investmentIndustryPreference4,
+                status : 0
             };
             // Add data to company table
             await InvestorModel.create(newInvestment);
